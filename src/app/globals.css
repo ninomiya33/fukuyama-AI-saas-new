@@ -1,0 +1,463 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --primary: #4F46E5;
+  --secondary: #10B981;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* --- ユーザー指定の和文ゴシック＋赤基調＋シンプルな雰囲気 --- */
+body {
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  background: #f7f7f7;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #e60033;
+  color: #fff;
+  padding: 1.5em 0 1em 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 0.5em 0;
+  font-size: 2em;
+  letter-spacing: 0.1em;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+main {
+  max-width: 900px;
+  margin: 2em auto;
+  padding: 0 1em;
+}
+
+.feature h2, .people h2 {
+  color: #e60033;
+  border-left: 6px solid #e60033;
+  padding-left: 0.5em;
+  margin-bottom: 1em;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 1.5em;
+  padding: 1.2em 1em;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.people ul {
+  list-style: disc inside;
+  padding-left: 1em;
+}
+
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 1em 0;
+  margin-top: 2em;
+  font-size: 0.9em;
+}
+
+/* iOSネイティブアプリ風のスタイル */
+* {
+  box-sizing: border-box;
+}
+
+/* 高級感のあるアニメーションスタイル */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* ガラス効果 */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* 高級感のあるシャドウ */
+.premium-shadow {
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.1),
+    0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.premium-shadow-hover {
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* スムーズなトランジション */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.smooth-transition-fast {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ホバーエフェクト */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+/* ボタンのスタイル */
+.btn {
+  @apply bg-blue-500 text-white px-6 py-3 rounded-xl font-medium text-base;
+  @apply transition-all duration-200 ease-in-out;
+  @apply shadow-lg;
+  @apply active:scale-95 active:bg-blue-600;
+  @apply hover:bg-blue-600 hover:shadow-xl;
+  min-height: 44px; /* iOS推奨のタッチターゲットサイズ */
+}
+
+/* 入力フィールドのスタイル */
+.input {
+  @apply bg-white border border-gray-300 rounded-xl px-4 py-3;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  @apply transition-all duration-200;
+  min-height: 44px;
+}
+
+/* カードのスタイル */
+.card {
+  @apply bg-white rounded-2xl shadow-lg p-6;
+  @apply border border-gray-100;
+}
+
+/* モーダルのスタイル */
+.modal {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center;
+  @apply z-50;
+}
+
+.modal-content {
+  @apply bg-white rounded-3xl p-6 mx-4;
+  @apply max-w-md w-full;
+  @apply shadow-2xl;
+}
+
+/* リストアイテムのスタイル */
+.list-item {
+  @apply bg-white border-b border-gray-100 px-4 py-3;
+  @apply active:bg-gray-50;
+  min-height: 44px;
+  @apply flex items-center;
+}
+
+/* カレンダーのスタイル */
+.calendar {
+  @apply bg-white rounded-2xl shadow-lg p-4;
+}
+
+.calendar-day {
+  @apply w-10 h-10 rounded-full flex items-center justify-center;
+  @apply text-sm font-medium;
+  @apply hover:bg-gray-100 active:bg-gray-200;
+  @apply transition-colors duration-200;
+}
+
+.calendar-day.selected {
+  @apply bg-blue-500 text-white;
+}
+
+/* スケジュールリストのスタイル */
+.schedule-item {
+  @apply bg-white rounded-xl p-4 mb-3;
+  @apply shadow-sm border border-gray-100;
+  @apply active:bg-gray-50;
+  @apply transition-all duration-200;
+}
+
+/* フォームグループのスタイル */
+.form-group {
+  @apply mb-4;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700 mb-2;
+}
+
+/* ナビゲーションのスタイル */
+.nav {
+  @apply bg-white border-t border-gray-200;
+  @apply fixed bottom-0 left-0 right-0;
+  @apply px-4 py-2;
+}
+
+.nav-item {
+  @apply flex flex-col items-center py-2 px-3;
+  @apply text-xs font-medium;
+  @apply active:bg-gray-100;
+  @apply rounded-lg;
+  @apply transition-colors duration-200;
+  min-height: 44px;
+}
+
+/* iOS風の安全領域対応 */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* モバイル最適化 */
+@media (max-width: 768px) {
+  .mobile-bottom-padding {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+  }
+  
+  .mobile-bottom-nav-padding {
+    padding-bottom: calc(120px + env(safe-area-inset-bottom));
+  }
+}
+
+/* 下部固定ナビゲーション用のメインコンテンツ調整 */
+.main-content-with-bottom-nav {
+  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}
+
+.main-content-with-floating-action {
+  padding-bottom: calc(120px + env(safe-area-inset-bottom));
+}
+
+/* 不動産査定アプリ用のスタイル */
+.custom-checkbox {
+  display: none;
+}
+
+.custom-checkbox + label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 20px;
+}
+
+.custom-checkbox + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.custom-checkbox:checked + label:before {
+  background: #4F46E5;
+  border-color: #4F46E5;
+}
+
+.custom-checkbox:checked + label:after {
+  content: '✓';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.progress-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.progress-step:not(:last-child):after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  width: calc(100% - 40px);
+  height: 2px;
+  background: #e5e7eb;
+  transform: translateY(-50%);
+}
+
+.progress-step.active:not(:last-child):after {
+  background: #4F46E5;
+}
+
+.progress-step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active .progress-step-circle {
+  background: #4F46E5;
+  color: white;
+}
+
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+:where([class^="ri-"])::before { 
+  font-family: 'remixicon' !important;
+}
+
+.process-step {
+  position: relative;
+}
+
+.process-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 100%;
+  height: 2px;
+  background: #e5e7eb;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.process-step.active:not(:last-child)::after {
+  background: #4F46E5;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4F46E5, #7c3aed);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+} 
