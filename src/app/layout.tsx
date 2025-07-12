@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Noto_Sans_JP } from 'next/font/google'
 import './globals.css'
+import Script from 'next/script'
 
 const notoSansJP = Noto_Sans_JP({ 
   subsets: ['latin'],
@@ -21,13 +22,20 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
+        {/* Google Fontsはnext/font/googleで統一済みなので、重複<link>は削除 */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+        {/* Pacificoフォントのみ追加で必要な場合は<link>残す */}
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+        {/* RemixiconはCDNでOK */}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+        {/* EChartsはnext/scriptで非同期読み込み */}
       </head>
-      <body className={notoSansJP.className}>{children}</body>
+      <body className={notoSansJP.className}>
+        {/* ECharts CDNスクリプトを非同期で読み込み */}
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js" strategy="afterInteractive" />
+        {children}
+      </body>
     </html>
   )
 } 
